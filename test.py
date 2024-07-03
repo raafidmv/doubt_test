@@ -94,7 +94,7 @@ if uploaded_file is not None:
                 st.write(f"Input Question: {input_question}")
                 st.write(f"Most Similar Question: {most_similar_question}")
                 st.write(f"Modified SQL Query: {modified_sql_query}")
-                st.write(f"Modified SQL Query: {similarity_score}")
+                # st.write(f"Modified SQL Query: {similarity_score}")
 
                 
 
