@@ -25,7 +25,7 @@ def generate_sql_query(question, base_sql_query):
     """
 
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4o",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": prompt}
@@ -97,18 +97,3 @@ if uploaded_file is not None:
                 # st.write(f"Modified SQL Query: {similarity_score}")
 
                 
-
-    #     else:
-    #         st.write("Please enter a question")
-
-    # # Save the DataFrame with the embeddings back to a CSV file
-    # df['embeddings'] = df['embeddings'].apply(json.dumps)  # Convert embeddings back to JSON strings for saving
-
-    # # Provide an option to download the updated CSV
-    # csv = df.to_csv(index=False)
-    # st.download_button(
-    #     label="Download updated CSV",
-    #     data=csv,
-    #     file_name='updated_wren1.csv',
-    #     mime='text/csv',
-    # )
