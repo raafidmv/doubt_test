@@ -18,6 +18,8 @@ def generate_sql_query(question, base_sql_query):
     prompt = f"""
     The following question has been asked: "{question}"
     The base SQL query for a similar question is: "{base_sql_query}"
+    If the Input question and Most Similar Question has different meaning print I dont know
+    else
     Modify the base SQL query to correctly answer the given question.
     Only print the SQL query as the return answer.
     """
@@ -30,7 +32,7 @@ def generate_sql_query(question, base_sql_query):
         ],
         max_tokens=500,
         n=1,
-        temperature=0.5,
+        temperature=0.2,
     )
 
     return response.choices[0].message["content"].strip()
