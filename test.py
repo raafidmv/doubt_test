@@ -46,15 +46,15 @@ if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
     st.write(df[['Question', 'SQL Query']])
 
-    # Ensure the embeddings column exists
-    if 'embeddings' not in df.columns:
-        df['embeddings'] = None
+    # # Ensure the embeddings column exists
+    # if 'embeddings' not in df.columns:
+    #     df['embeddings'] = None
 
-    # Get embeddings for questions that do not already have an embedding
-    df['embeddings'] = df.apply(
-        lambda row: json.dumps(get_embedding(row['Question'])) if pd.isna(row['embeddings']) else row['embeddings'],
-        axis=1
-    )
+    # # Get embeddings for questions that do not already have an embedding
+    # df['embeddings'] = df.apply(
+    #     lambda row: json.dumps(get_embedding(row['Question'])) if pd.isna(row['embeddings']) else row['embeddings'],
+    #     axis=1
+    # )
 
     # Input question
     input_question = st.text_input("Enter your question")
