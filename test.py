@@ -6,6 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import streamlit as st
 
 # Initialize OpenAI API key
+openai.api_key = st.secrets["openai"]["api_key"]
 
 # Function to get embeddings from OpenAI
 def get_embedding(text, model="text-embedding-ada-002"):
