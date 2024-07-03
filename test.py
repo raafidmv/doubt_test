@@ -55,40 +55,45 @@ if uploaded_file is not None:
 
     # Input question
     input_question = st.text_input("Enter your question")
-    if input_question:
-        # Get embedding for the input question
-        input_embedding = get_embedding(input_question)
 
-        # Convert embeddings column from JSON strings to numpy arrays
-        df['embeddings'] = df['embeddings'].apply(json.loads)
+    if st.button("Apply"):
+        if input_question:
+            # Get embedding for the input question
+            input_embedding = get_embedding(input_question)
 
-        # Convert embeddings to numpy array
-        embeddings_matrix = np.vstack(df['embeddings'].values)
+            # Convert embeddings column from JSON strings to numpy arrays
+            df['embeddings'] = df['embeddings'].apply(json.loads)
 
-        # Calculate cosine similarity between input question embedding and all other embeddings
-        similarities = cosine_similarity([input_embedding], embeddings_matrix)
+            # Convert embeddings to numpy array
+            embeddings_matrix = np.vstack(df['embeddings'].values)
 
-        # Find the index of the most similar question
-        most_similar_idx = np.argmax(similarities)
+            # Calculate cosine similarity between input question embedding and all other embeddings
+            similarities = cosine_similarity([input_embedding], embeddings_matrix)
 
-        # Get the similarity score of the most similar question
-        similarity_score = similarities[0, most_similar_idx]
+            # Find the index of the most similar question
+            most_similar_idx = np.argmax(similarities)
 
-        # Check if similarity score is less than 0.4
-        if similarity_score < 0.4:
-            st.write("I don't know")
+            # Get the similarity score of the most similar question
+            similarity_score = similarities[0, most_similar_idx]
+
+            # Check if similarity score is less than 0.4
+            if similarity_score < 0.4:
+                st.write("I don't know")
+            else:
+                # Get the most similar question and answer
+                most_similar_question = df.iloc[most_similar_idx]['Question']
+                most_similar_answer = df.iloc[most_similar_idx]['SQL Query']
+
+                # Generate the modified SQL query
+                modified_sql_query = generate_sql_query(input_question, most_similar_answer)
+
+                # Display the results
+                st.write(f"Input Question: {input_question}")
+                st.write(f"Most Similar Question: {most_similar_question}")
+                st.write(f"Modified SQL Query: {modified_sql_query}")
+
         else:
-            # Get the most similar question and answer
-            most_similar_question = df.iloc[most_similar_idx]['Question']
-            most_similar_answer = df.iloc[most_similar_idx]['SQL Query']
-
-            # Generate the modified SQL query
-            modified_sql_query = generate_sql_query(input_question, most_similar_answer)
-
-            # Display the results
-            st.write(f"Input Question: {input_question}")
-            st.write(f"Most Similar Question: {most_similar_question}")
-            st.write(f"Modified SQL Query: {modified_sql_query}")
+            st.write("Please enter a question")
 
     # Save the DataFrame with the embeddings back to a CSV file
     df['embeddings'] = df['embeddings'].apply(json.dumps)  # Convert embeddings back to JSON strings for saving
