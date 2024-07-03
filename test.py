@@ -38,7 +38,7 @@ def generate_sql_query(question, base_sql_query):
     return response.choices[0].message["content"].strip()
 
 # Streamlit app
-st.title("Eduport Query Generator")
+st.title("EdQ")
 
 # File uploader
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
