@@ -18,7 +18,7 @@ def generate_sql_query(question, base_sql_query):
     prompt = f"""
     The following question has been asked: "{question}"
     The base SQL query for a similar question is: "{base_sql_query}"
-    If the Input question and Most Similar Question has different meaning print I dont know
+    If the Input question and Most Similar Question has different meaning Don't return the any data
     else
     Modify the base SQL query to correctly answer the given question.
     Only print the SQL query as the return answer.
