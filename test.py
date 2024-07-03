@@ -36,13 +36,13 @@ def generate_sql_query(question, base_sql_query):
     return response.choices[0].message["content"].strip()
 
 # Streamlit app
-st.title("SQL Query Generator")
+st.title("Eduport Query Generator")
 
 # File uploader
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-    st.write(df.head())
+    st.write(df)
 
     # Ensure the embeddings column exists
     if 'embeddings' not in df.columns:
