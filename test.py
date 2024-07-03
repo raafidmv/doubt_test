@@ -98,17 +98,17 @@ if uploaded_file is not None:
 
                 
 
-        else:
-            st.write("Please enter a question")
+    #     else:
+    #         st.write("Please enter a question")
 
-    # Save the DataFrame with the embeddings back to a CSV file
-    df['embeddings'] = df['embeddings'].apply(json.dumps)  # Convert embeddings back to JSON strings for saving
+    # # Save the DataFrame with the embeddings back to a CSV file
+    # df['embeddings'] = df['embeddings'].apply(json.dumps)  # Convert embeddings back to JSON strings for saving
 
-    # Provide an option to download the updated CSV
-    csv = df.to_csv(index=False)
-    st.download_button(
-        label="Download updated CSV",
-        data=csv,
-        file_name='updated_wren1.csv',
-        mime='text/csv',
-    )
+    # # Provide an option to download the updated CSV
+    # csv = df.to_csv(index=False)
+    # st.download_button(
+    #     label="Download updated CSV",
+    #     data=csv,
+    #     file_name='updated_wren1.csv',
+    #     mime='text/csv',
+    # )
