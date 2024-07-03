@@ -42,7 +42,7 @@ st.title("Eduport Query Generator")
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-    st.write(df)
+    st.write(df[['Question', 'SQL Query']])
 
     # Ensure the embeddings column exists
     if 'embeddings' not in df.columns:
