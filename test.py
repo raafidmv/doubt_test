@@ -18,10 +18,11 @@ def generate_sql_query(question, base_sql_query):
     prompt = f"""
     The following question has been asked: "{question}"
     The base SQL query for a similar question is: "{base_sql_query}"
+    Only return the sql query, no extra sentences has to be removed
+    Don't edit the table names and column names
     If the Input question and Most Similar Question has different meaning Don't return the any data
     else
     Modify the base SQL query to correctly answer the given question.
-    Only print the SQL query as the return answer.
     """
 
     response = openai.ChatCompletion.create(
