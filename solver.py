@@ -2,6 +2,7 @@ import openai
 import streamlit as st
 
 # Set your API key
+openai.api_key = st.secrets["openai"]["api_key"]
 
 # Define subtopics for each main topic
 subtopics_dict = {
